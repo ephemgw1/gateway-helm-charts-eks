@@ -1,0 +1,36 @@
+elasticsearch:
+
+  client:
+    serviceType: LoadBalancer
+
+kibana:
+
+  files:
+    kibana.yml:
+      elasticsearch.url: http://apim-logs-runtime-elasticsearch-client:9200
+
+  service:
+    type: NodePort
+    externalPort: 5601
+    port: 80
+
+  livenessProbe:
+    enabled: true
+
+  readinessProbe:
+    enabled: true
+
+  ingress:
+    enabled: true
+    path: /*
+    annotations:
+      kubernetes.io/ingress.class: alb
+      alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-2:587976449008:certificate/014b7c44-6d79-4752-8a42-68b7369a713d
+      alb.ingress.kubernetes.io/scheme: internet-facing
+      external-dns.alpha.kubernetes.io/hostname: kibana.lmpoc.apim.ca
+    hosts:
+      - kibana.example.com/*
+    tls:
+      - secretName: kibana-tls
+        hosts:
+          - grafana.example.com

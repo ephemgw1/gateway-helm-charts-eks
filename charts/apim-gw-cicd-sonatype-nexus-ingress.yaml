@@ -1,0 +1,35 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+  generation: 1
+  labels:
+    app: sonatype-nexus
+    chart: sonatype-nexus-1.15.1
+    fullname: apim-gw-cicd-sonatype-nexus
+    heritage: Tiller
+    release: apim-gw-cicd
+  name: apim-gw-cicd-sonatype-nexus
+  namespace: default
+  resourceVersion: "382462"
+  selfLink: /apis/extensions/v1beta1/namespaces/default/ingresses/apim-gw-cicd-sonatype-nexus
+  uid: 7a6337db-d43e-11e9-b303-062032a819ca
+spec:
+  rules:
+  - host: docker.pluto.apim.ca
+    http:
+      paths:
+      - backend:
+          serviceName: apim-gw-cicd-sonatype-nexus
+          servicePort: 8080
+        path: /*
+  - host: nexus.pluto.apim.ca
+    http:
+      paths:
+      - backend:
+          serviceName: apim-gw-cicd-sonatype-nexus
+          servicePort: 8080
+        path: /*
+  tls:
+  - hosts:
+    - docker.pluto.apim.ca

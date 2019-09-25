@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    #service.beta.kubernetes.io/aws-load-balancer-type: nlb
+    external-dns.alpha.kubernetes.io/hostname: nexus.pluto.apim.ca,docker.pluto.apim.ca
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: "arn:aws:acm:us-east-2:587976449008:certificate/7448cd4c-7625-4d57
+-8177-9cf18df8ede0"
+    service.beta.kubernetes.io/aws-load-balancer-connection-idle-timeout: "60"
+    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "https"
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: "http" 
+
+  labels:
+    app: sonatype-nexus
+    chart: sonatype-nexus-1.15.1
+    fullname: apim-gw-cicd-sonatype-nexus
+    heritage: Tiller
+    release: apim-gw-cicd
+  name: apim-gw-cicd-sonatype-nexus
+  namespace: default
+  resourceVersion: "508814"
+  selfLink: /api/v1/namespaces/default/services/apim-gw-cicd-sonatype-nexus
+  uid: 7a5f141d-d43e-11e9-b303-062032a819ca
+spec:
+  clusterIP: 10.100.183.44
+  externalTrafficPolicy: Cluster
+  ports:
+  - name: https
+    nodePort: 31132
+    port: 8080
+    protocol: TCP
+    targetPort: http
+  selector:
+    app: sonatype-nexus
+    release: apim-gw-cicd
+  sessionAffinity: None
+  type: LoadBalancer

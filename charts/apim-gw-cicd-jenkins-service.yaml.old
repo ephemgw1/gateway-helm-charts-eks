@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: nlb
+    external-dns.alpha.kubernetes.io/hostname: jenkins.pluto.apim.ca
+  labels:
+    app: apim-gw-cicd-jenkins
+    chart: jenkins-0.28.3
+    component: apim-gw-cicd-jenkins-master
+    heritage: Tiller
+    release: apim-gw-cicd
+  name: apim-gw-cicd-jenkins
+  namespace: default
+  resourceVersion: "383255"
+  selfLink: /api/v1/namespaces/default/services/apim-gw-cicd-jenkins
+  uid: 7a5bbc21-d43e-11e9-b303-062032a819ca
+spec:
+  clusterIP: 10.100.42.135
+  externalTrafficPolicy: Cluster
+  ports:
+  - name: http
+    nodePort: 31250
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    component: apim-gw-cicd-jenkins-master
+  sessionAffinity: None
+  type: LoadBalancer

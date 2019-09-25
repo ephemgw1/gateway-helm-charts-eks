@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: "2048-ingress"
+  namespace: "2048-game"
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: game01.pluto.apim.ca
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-2:587976449008:certificate/7448cd4c-7625-4d57-8177-9cf18df8ede0
+    alb.ingress.kubernetes.io/scheme: internet-facing
+  labels:
+    app: 2048-ingress
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /*
+            backend:
+              serviceName: "service-2048"
+              servicePort: 80
