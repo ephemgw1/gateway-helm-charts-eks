@@ -3,8 +3,8 @@
 # Replace <jenkins password>, <nexus password> and <grafana password> with your own
 # Use this file to install umbrella chart, e.g. helm install mychart --name mychart -f override.yaml
 
-apim-gw-cert-manager: &acmeEmail "<your.email.address"                                       # Email of your google account for your cluster, e.g. example@gmail.com
-#apim-gw-cert-manager: &certDomainName "*.lmpoc.apim.ca" Domain name of the cert to be generated, e.g. *.cluster1.example.com 
+apim-gw-cert-manager: &acmeEmail "<your.email.address>"                                       # Email of your google account for your cluster, e.g. example@gmail.com
+#apim-gw-cert-manager: &certDomainName "*.<yourDomainName>" Domain name of the cert to be generated, e.g. *.cluster1.example.com 
 apim-gw-cert-manager: &stagingCertificateName "stage"
 apim-gw-cert-manager: &prodCertificateName "prod"                         # Define the name of the certificate in your cluster
 apim-gw-cert-manager: &secretName "tls"                                   # Define the name of the key in your cluster, which is used by ingress later
