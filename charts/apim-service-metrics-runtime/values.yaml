@@ -37,9 +37,9 @@ grafana:
     path: /*
     annotations:
       kubernetes.io/ingress.class: alb
-      alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-2:587976449008:certificate/014b7c44-6d79-4752-8a42-68b7369a713d
+      alb.ingress.kubernetes.io/certificate-arn: <your cert arn on ACM>
       alb.ingress.kubernetes.io/scheme: internet-facing
-      external-dns.alpha.kubernetes.io/hostname: grafana.lmpoc.apim.ca
+      external-dns.alpha.kubernetes.io/hostname: grafana.<yourDomainName>
     hosts:
       - grafana.example.com
     tls:
