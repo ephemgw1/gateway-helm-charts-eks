@@ -25,9 +25,9 @@ kibana:
     path: /*
     annotations:
       kubernetes.io/ingress.class: alb
-      alb.ingress.kubernetes.io/certificate-arn: <your cert arn on ACM>
+      alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:065077053819:certificate/18f072ad-ecb0-4d39-be1f-53cca4ae16b4
       alb.ingress.kubernetes.io/scheme: internet-facing
-      external-dns.alpha.kubernetes.io/hostname: kibana.<yourDomainName>
+      external-dns.alpha.kubernetes.io/hostname: kibana.eks.layer7.broadcom.com
     hosts:
       - kibana.example.com/*
     tls:
