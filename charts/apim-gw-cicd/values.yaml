@@ -12,9 +12,9 @@ sonatype-nexus:
     path: /*
     annotations:
       kubernetes.io/ingress.class: alb
-      alb.ingress.kubernetes.io/certificate-arn: <your cert arn on ACM>
+      alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:065077053819:certificate/18f072ad-ecb0-4d39-be1f-53cca4ae16b4
       alb.ingress.kubernetes.io/scheme: internet-facing
-      external-dns.alpha.kubernetes.io/hostname: nexus.<yourDomainName>
+      external-dns.alpha.kubernetes.io/hostname: nexus.eks.layer7.broadcom.com
     tls:
       enabled: true
       secretName: tls
@@ -35,9 +35,9 @@ jenkins:
       Path: /*
       Annotations:
         kubernetes.io/ingress.class: alb
-        alb.ingress.kubernetes.io/certificate-arn: <your cert arn on ACM>
+        alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:065077053819:certificate/18f072ad-ecb0-4d39-be1f-53cca4ae16b4
         alb.ingress.kubernetes.io/scheme: internet-facing
-        external-dns.alpha.kubernetes.io/hostname: jenkins.<yourDomainName>
+        external-dns.alpha.kubernetes.io/hostname: jenkins.eks.layer7.broadcom.com
       TLS:
         - secretName: tls
           hosts:
